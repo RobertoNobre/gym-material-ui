@@ -8,13 +8,15 @@ class Footer extends Component {
     return (
         <Paper>
           <Tabs
+            value={0}
             indicatorColor="primary"
             textColor="primary"
             centered
           >
-            <Tab label="Item One" />
-            <Tab label="Item Two" />
-            <Tab label="Item Three" />
+            <Tab label='All' />
+            { this.props.muscles.map((group, index) => 
+                <Tab label={group} key={index}/>
+              ) }
           </Tabs>
         </Paper>
     );
