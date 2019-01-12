@@ -5,17 +5,25 @@ import Tab from '@material-ui/core/Tab';
 
 class Footer extends Component {
   render() {
+    const index = this.props.category
+      ? this.props.muscles.findIndex(group => group === this.props.category) + 1
+      : 0
+
+    const onIndexSelect = (e, index) => 
+      this.props.onSelect(index === 0 ? '' : this.props.muscles[index - 1])
+    
     return (
         <Paper>
           <Tabs
-            value={0}
+            value={index}
+            onChange={onIndexSelect}
             indicatorColor="primary"
             textColor="primary"
             centered
           >
             <Tab label='All' />
-            { this.props.muscles.map((group, index) => 
-                <Tab label={group} key={index}/>
+            { this.props.muscles.map(group => 
+                <Tab label={group} key={group}/>
               ) }
           </Tabs>
         </Paper>
