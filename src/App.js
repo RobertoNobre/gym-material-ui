@@ -38,6 +38,7 @@ class App extends Component {
   render() {
     const exercises = this.getExercisesByMuscles(),
     { category, exercise } = this.state;
+    console.log(exercises)
     return (
       <Fragment>
         <Header />
