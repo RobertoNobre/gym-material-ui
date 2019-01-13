@@ -13,7 +13,9 @@ class Header extends Component {
                     Exercise Database
                 </Typography>
 
-                <CreateModal />
+                <CreateModal 
+                    muscles={this.props.muscles}
+                    onCreate={this.props.onExerciseCreate} />
             </Toolbar>
       </AppBar>
     );
