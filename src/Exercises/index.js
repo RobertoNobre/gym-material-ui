@@ -2,7 +2,8 @@ import React, { Fragment } from 'react';
 import { Grid, Paper, Typography, List, ListItemSecondaryAction, IconButton } from '@material-ui/core';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import { Delete } from '@material-ui/icons';
+import { Delete, Edit } from '@material-ui/icons';
+import Form from './Form';
 
 const styles = {
     Paper : { padding: 20, marginTop: 10, marginBottom: 10, height: 500, overflowY: 'auto' }
@@ -11,13 +12,18 @@ const styles = {
 export default ({ 
         exercises, 
         category, 
+        editMode,
         onSelect, 
+        muscles,
+        exercise,
         exercise: {
             id, 
             title = 'Welcome', 
             description = 'Please select an exercise from the list on the left.'
         },
-        onDelete
+        onDelete,
+        onSelectEdit,
+        onEdit
     })  =>
     <Grid container>
         <Grid item md>
@@ -40,6 +46,9 @@ export default ({
                                         >
                                             <ListItemText primary={title} />
                                             <ListItemSecondaryAction >
+                                                <IconButton onClick={() => onSelectEdit(id)}>
+                                                    <Edit/>
+                                                </IconButton>
                                                 <IconButton onClick={() => onDelete(id)}>
                                                     <Delete/>
                                                 </IconButton>
@@ -54,18 +63,25 @@ export default ({
         </Grid>
         <Grid item md>
             <Paper style={styles.Paper}>
-
-                <Typography
-                    variant="display1"
-                >
-                   { title } 
-                </Typography>
-                <Typography
-                    variant="headline"
-                    style={{marginTop: 20}}
-                >
-                    { description }
-                </Typography>
+                {editMode
+                ? <Form
+                        exercise={exercise}
+                        muscles={muscles}
+                        onSubmit={onEdit}    
+                    />
+                : <Fragment>
+                    <Typography
+                        variant="display1"
+                    >
+                    { title } 
+                    </Typography>
+                    <Typography
+                        variant="headline"
+                        style={{marginTop: 20}}
+                    >
+                        { description }
+                    </Typography>
+                </Fragment>}
             </Paper>
         </Grid>
     </Grid>

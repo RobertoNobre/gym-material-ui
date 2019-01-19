@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import CreateModal from './../Components/CreateModal';
+import CreateDialog from './../Exercises/Dialog';
 
 class Header extends Component {
   render() {
@@ -13,7 +13,7 @@ class Header extends Component {
                     Exercise Database
                 </Typography>
 
-                <CreateModal 
+                <CreateDialog 
                     muscles={this.props.muscles}
                     onCreate={this.props.onExerciseCreate} />
             </Toolbar>
