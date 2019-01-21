@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import withWidth from '@material-ui/core/withWidth';
 
 class Footer extends Component {
   render() {
@@ -19,7 +20,8 @@ class Footer extends Component {
             onChange={onIndexSelect}
             indicatorColor="primary"
             textColor="primary"
-            centered
+            centered={this.props.width !== 'xs'}
+            scrollable={this.props.width === 'xs'}
           >
             <Tab label='All' />
             { this.props.muscles.map(group => 
@@ -31,4 +33,4 @@ class Footer extends Component {
   }
 }
 
-export default Footer;
+export default withWidth()(Footer);

@@ -26,7 +26,7 @@ export default ({
         onEdit
     })  =>
     <Grid container>
-        <Grid item md>
+        <Grid item xs={12} sm={6}>
             <Paper style={styles.Paper}>
                 { exercises.map(([group, exercises]) => 
                     !category || category === group
@@ -49,6 +49,7 @@ export default ({
                                                 <IconButton onClick={() => onSelectEdit(id)}>
                                                     <Edit/>
                                                 </IconButton>
+                                
                                                 <IconButton onClick={() => onDelete(id)}>
                                                     <Delete/>
                                                 </IconButton>
@@ -61,27 +62,27 @@ export default ({
                 )}
             </Paper>
         </Grid>
-        <Grid item md>
+        <Grid item xs={12} sm={6}>
             <Paper style={styles.Paper}>
+                    <Typography
+                        variant="display1"
+                        gutterBottom
+                    >
+                    { title } 
+                    </Typography>   
                 {editMode
                 ? <Form
                         exercise={exercise}
                         muscles={muscles}
                         onSubmit={onEdit}    
                     />
-                : <Fragment>
-                    <Typography
-                        variant="display1"
-                    >
-                    { title } 
-                    </Typography>
+                : 
                     <Typography
                         variant="headline"
                         style={{marginTop: 20}}
                     >
                         { description }
-                    </Typography>
-                </Fragment>}
+                    </Typography>}
             </Paper>
         </Grid>
     </Grid>

@@ -1,14 +1,7 @@
 import React, { Component } from 'react';
 import { Button, TextField, FormControl, MenuItem, InputLabel, Select } from '@material-ui/core/';
-import { withStyles } from '@material-ui/core/styles';
 
-const styles = theme => ({
-    FormControl: {
-        width: 300
-    }
-})
-
-export default withStyles(styles)(class extends Component {
+export default class extends Component {
     state = this.getInitState();
     
     getInitState(){
@@ -19,12 +12,6 @@ export default withStyles(styles)(class extends Component {
             description: '',
             muscles: ''
         }
-    }
-
-    componentWillReceiveProps({ exercise }){
-        this.setState({
-            ...exercise
-        });
     }
 
     handleChange = e => {
@@ -38,13 +25,11 @@ export default withStyles(styles)(class extends Component {
             id: this.state.title.toLocaleLowerCase().replace(/ /g, '-'),
             ...this.state
         });
-
-        this.setState(this.getInitState())
     }
 
     render(){
         const { title, muscles, description } = this.state,
-            { classes, exercise, muscles: categories } = this.props;
+            { exercise, muscles: categories } = this.props;
 
         return <form>
         <TextField
@@ -53,15 +38,16 @@ export default withStyles(styles)(class extends Component {
             name="title"
             onChange={this.handleChange}
             margin="normal"
-            className={classes.FormControl}
+            fullWidth
         />
         <br/>
-        <FormControl className={classes.FormControl}>
+        <FormControl>
             <InputLabel >Muscles</InputLabel>
             <Select
                 value={muscles}
                 onChange={this.handleChange}
                 name="muscles"
+                fullWidth
             >
                 { categories.map(category =>
                     <MenuItem key={category} value={category}>{category}</MenuItem>
@@ -77,16 +63,17 @@ export default withStyles(styles)(class extends Component {
             name="description"
             onChange={this.handleChange}
             margin="normal"
-            className={classes.FormControl}
+            fullWidth
         />
         <br/>
         <Button 
             color="primary" 
             variant="contained"
             onClick={this.handleSubmit}
+            disabled={!muscles || !title}
         >
         { exercise ? 'Edit' : 'Create' }
         </Button>
     </form>
     }
-})
+}
