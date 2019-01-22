@@ -30,7 +30,7 @@ export default class extends Component {
     render(){
         const { title, muscles, description } = this.state,
             { exercise, muscles: categories } = this.props;
-
+            console.log(this.state)
         return <form>
         <TextField
             label="Title"
@@ -41,13 +41,13 @@ export default class extends Component {
             fullWidth
         />
         <br/>
-        <FormControl>
+        <FormControl
+            fullWidth>
             <InputLabel >Muscles</InputLabel>
             <Select
                 value={muscles}
                 onChange={this.handleChange}
                 name="muscles"
-                fullWidth
             >
                 { categories.map(category =>
                     <MenuItem key={category} value={category}>{category}</MenuItem>

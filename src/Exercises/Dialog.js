@@ -27,7 +27,7 @@ class CreateDialog extends Component {
             { muscles } = this.props;
         return(
             <Fragment>
-                <Fab onClick={this.handleToggle} color="primary" mini="true">
+                <Fab onClick={this.handleToggle} color="secondary" mini="true">
                     <Add />
                 </Fab>
                 <Dialog

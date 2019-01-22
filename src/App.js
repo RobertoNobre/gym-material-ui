@@ -55,11 +55,12 @@ class App extends Component {
     }))
   
 
-  handleExerciseSelectEdit = id => 
+  handleExerciseSelectEdit = id => {
+    console.log(exercises.find(item => item.id === id))
     this.setState(({ exercises }) => ({
       exercise: exercises.find(item => item.id === id),
       editMode: true
-    }))
+    }))}
   
 
   handleExerciseEdit = exercise => {
@@ -75,6 +76,7 @@ class App extends Component {
   render() {
     const exercises = this.getExercisesByMuscles(),
     { category, exercise, editMode } = this.state;
+    console.log(exercise)
     return (
       <Fragment>
         <Header 

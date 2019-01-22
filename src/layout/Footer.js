@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Paper from '@material-ui/core/Paper';
+import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import withWidth from '@material-ui/core/withWidth';
@@ -14,12 +14,12 @@ class Footer extends Component {
       this.props.onSelect(index === 0 ? '' : this.props.muscles[index - 1])
     
     return (
-        <Paper>
+        <AppBar position='static'>
           <Tabs
             value={index}
             onChange={onIndexSelect}
-            indicatorColor="primary"
-            textColor="primary"
+            indicatorColor="secondary"
+            textColor="secondary"
             centered={this.props.width !== 'xs'}
             scrollable={this.props.width === 'xs'}
           >
@@ -28,7 +28,7 @@ class Footer extends Component {
                 <Tab label={group} key={group}/>
               ) }
           </Tabs>
-        </Paper>
+        </AppBar>
     );
   }
 }
