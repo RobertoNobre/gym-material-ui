@@ -4,12 +4,42 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { Delete, Edit } from '@material-ui/icons';
 import Form from './Form';
+import { withStyles } from '@material-ui/core/styles';
 
-const styles = {
-    Paper : { padding: 20, marginTop: 10, marginBottom: 10, height: 500, overflowY: 'auto' }
-}
+const styles = theme => ({
+    paper : { 
+        padding: theme.spacing.unit * 3, 
+        [theme.breakpoints.up('sm')]:{
+            marginTop: 5,
+            height: 'calc(100% - 10px)', 
+        },
+        [theme.breakpoints.down('xs')]:{
+            height: '100%', 
+        },
+        overflowY: 'auto' 
+    },
+    '@global': {
+        'html, body, #root': {
+            height: '100%'
+        }
+    },
+    container: {
+        [theme.breakpoints.up('sm')]:{
+            height: 'calc(100% - 64px - 48px)',
+        },
+        [theme.breakpoints.down('xs')]:{
+            height: 'calc(100% - 56px - 48px)',
+        }
+    },
+    item: {
+        [theme.breakpoints.down('xs')]:{
+            height: '50%',
+        }
+    }
+})
 
-export default ({ 
+export default withStyles(styles)(({ 
+        classes,
         exercises, 
         category, 
         editMode,
@@ -24,10 +54,10 @@ export default ({
         onDelete,
         onSelectEdit,
         onEdit
-    })  =>
-    <Grid container>
-        <Grid item xs={12} sm={6}>
-            <Paper style={styles.Paper}>
+    }) =>
+    <Grid container className={classes.container}>
+        <Grid className={classes.item} xs={12} sm={6}>
+            <Paper className={classes.paper}>
                 { exercises.map(([group, exercises]) => 
                     !category || category === group
                         ?   <Fragment key={group}>
@@ -63,8 +93,8 @@ export default ({
                 )}
             </Paper>
         </Grid>
-        <Grid item xs={12} sm={6}>
-            <Paper style={styles.Paper}>
+        <Grid className={classes.item} xs={12} sm={6}>
+            <Paper className={classes.paper}>
                     <Typography
                         color='secondary'
                         variant="display1"
@@ -86,4 +116,4 @@ export default ({
                     </Typography>}
             </Paper>
         </Grid>
-    </Grid>
+    </Grid>)
