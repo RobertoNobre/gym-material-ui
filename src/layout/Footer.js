@@ -3,34 +3,41 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import withWidth from '@material-ui/core/withWidth';
+import { withContext } from './../context';
 
 class Footer extends Component {
-  render() {
-    const index = this.props.category
-      ? this.props.muscles.findIndex(group => group === this.props.category) + 1
+    getIndex = () => { 
+      const { category, muscles } = this.props;
+      return category
+      ? muscles.findIndex(group => group === category) + 1
       : 0
+    }
 
-    const onIndexSelect = (e, index) => 
-      this.props.onSelect(index === 0 ? '' : this.props.muscles[index - 1])
-    
-    return (
+    onIndexSelect = (e, index) => {
+      const { onCategorySelect , muscles } = this.props;
+      onCategorySelect(index === 0 ? '' : muscles[index - 1])
+    }
+
+    render() {
+      const { width, muscles } = this.props;
+      return (
         <AppBar position='static'>
           <Tabs
-            value={index}
-            onChange={onIndexSelect}
+            value={this.getIndex()}
+            onChange={this.onIndexSelect}
             indicatorColor="secondary"
             textColor="secondary"
-            centered={this.props.width !== 'xs'}
-            scrollable={this.props.width === 'xs'}
+            centered={width !== 'xs'}
+            scrollable={width === 'xs'}
           >
             <Tab label='All' />
-            { this.props.muscles.map(group => 
+            { muscles.map(group => 
                 <Tab label={group} key={group}/>
               ) }
           </Tabs>
         </AppBar>
-    );
+      );
   }
 }
 
-export default withWidth()(Footer);
+export default withContext(withWidth()(Footer));

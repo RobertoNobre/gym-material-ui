@@ -4,7 +4,8 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { Add } from '@material-ui/icons';
-import Form from './Form'
+import Form from './Form';
+import { withContext } from './../context';
 
 class CreateDialog extends Component {
     state = {
@@ -31,27 +32,27 @@ class CreateDialog extends Component {
                     <Add />
                 </Fab>
                 <Dialog
-                  open={open}
-                  onClose={this.handleToggle}
-                  fullWidth
-                  maxWidth='xs'
+                open={open}
+                onClose={this.handleToggle}
+                fullWidth
+                maxWidth='xs'
                 >
-                  <DialogTitle id="form-dialog-title">
+                <DialogTitle id="form-dialog-title">
                     Create a new exercise
-                  </DialogTitle>
-                  <DialogContent>
+                </DialogTitle>
+                <DialogContent>
                     <DialogContentText>
-                      Please fill out the form below.
+                    Please fill out the form below.
                     </DialogContentText>
                     <Form 
                         muscles={muscles}
                         onSubmit={this.handleSubmit}
                     />
         
-                  </DialogContent>
+                </DialogContent>
                 </Dialog>
             </Fragment>
         )
     }
 }
-export default CreateDialog
+export default withContext(CreateDialog)
