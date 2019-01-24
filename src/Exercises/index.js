@@ -103,7 +103,7 @@ const Exercises = (({
                     >
                     { title } 
                     </Typography>   
-                {editMode
+                {editMode 
                 ? <Form
                         exercise={exercise}
                         muscles={muscles}

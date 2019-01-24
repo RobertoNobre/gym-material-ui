@@ -3,19 +3,22 @@ import { Button, TextField, FormControl, MenuItem, InputLabel, Select } from '@m
 
 export default class extends Component {
     state = this.getInitState();
-    
+
     getInitState(){
         const { exercise } = this.props;
 
-        return exercise ? exercise : {
+        return exercise 
+        ?
+        exercise 
+        : {
             title: '',
             description: '',
             muscles: ''
         }
     }
-
+    
     handleChange = e => {
-        this.setState({
+        this.setState({...this.state,
             [e.target.name]: e.target.value
         })
     }
@@ -30,7 +33,7 @@ export default class extends Component {
     render(){
         const { title, muscles, description } = this.state,
             { exercise, muscles: categories } = this.props;
-            console.log(this.state)
+
         return <form>
         <TextField
             label="Title"
