@@ -58,9 +58,8 @@ class App extends Component {
   
 
   handleExerciseSelectEdit = id => {
-    console.log(exercises.find(item => item.id === id))
     this.setState(({ exercises }) => ({
-      exercise: exercises.find(item => item.id === id),
+      exercise: exercises.find(item => item.id !== id),
       editMode: true
     }))}
   
