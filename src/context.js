@@ -1,9 +1,13 @@
-import React, { createContext } from 'react';
- 
-export const { Provider, Consumer } = createContext();
+import React, { createContext } from 'react'
 
-export const withContext = Component => props => 
-    <Consumer>
-        {value => <Component {...value} {...props} />}
-    </Consumer>
- 
+export const ExercisesContext = createContext()
+
+export const { Provider, Consumer } = ExercisesContext
+
+export const withContext = Component => props => (
+  <Consumer>
+    {value =>
+      <Component {...value} {...props} />
+    }
+  </Consumer>
+)
